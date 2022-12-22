@@ -8,17 +8,17 @@ namespace DreamOrbit.Greetings.WebApi.Controllers
     [ApiController]
     public class GreetingsController : ControllerBase
     {
-        private readonly IGreetingsComponent _component;
+        private readonly IGreetingsComponent _greetingcomponent;
 
-        public GreetingsController(IGreetingsComponent component)
+        public GreetingsController(IGreetingsComponent greetingcomponent)
         {
-            _component = component;
+            _greetingcomponent = greetingcomponent;
         }
 
         [HttpGet]
         public IActionResult ProcessBirthdayEmail()
         {
-            return Ok(_component.ProcessBirthdayEmail);
+            return Ok(_greetingcomponent.ProcessBirthdayEmail());
         }
     }
 }
