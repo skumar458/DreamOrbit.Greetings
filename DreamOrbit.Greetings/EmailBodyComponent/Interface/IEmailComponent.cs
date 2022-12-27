@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DreamOrbit.Greetings.EmailBodyComponent.Interface
 {
-    public interface IEmailBodyComponent
+    public interface IEmailComponent
     {
         public bool PrepareEmail();
         public bool SendEmail();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
 {
-    public class EmailBodyComponent : IEmailBodyComponent
+    public class EmailComponent : IEmailComponent
     {
         public bool PrepareEmail()
         {

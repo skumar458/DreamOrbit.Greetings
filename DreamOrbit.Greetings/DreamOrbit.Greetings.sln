@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamOrbit.Greetings.WebApi", "DreamOrbit.Greetings.WebApi\DreamOrbit.Greetings.WebApi.csproj", "{B63F1AB9-7C65-4435-BE96-D0EC47CCB32D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamOrbit.Greetings.Component", "DreamOrbit.Greetings.Component\DreamOrbit.Greetings.Component.csproj", "{364B7A9C-AC51-4AB4-B083-A87D9A9E2294}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamOrbit.Greetings.Component", "DreamOrbit.Greetings.Component\DreamOrbit.Greetings.Component.csproj", "{364B7A9C-AC51-4AB4-B083-A87D9A9E2294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamOrbit.Greetings.Data", "DreamOrbit.Greetings.Data\DreamOrbit.Greetings.Data.csproj", "{059474B5-ABA2-4156-B0D7-75B5CF2A65E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamOrbit.Greetings.Data", "DreamOrbit.Greetings.Data\DreamOrbit.Greetings.Data.csproj", "{059474B5-ABA2-4156-B0D7-75B5CF2A65E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamOrbit.Greetings.EmailBodyComponent", "EmailBodyComponent\DreamOrbit.Greetings.EmailBodyComponent.csproj", "{05E33B5F-394E-4C0B-83CE-19A4A8DE2D8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamOrbit.Greetings.EmailComponent", "EmailBodyComponent\DreamOrbit.Greetings.EmailComponent.csproj", "{05E33B5F-394E-4C0B-83CE-19A4A8DE2D8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

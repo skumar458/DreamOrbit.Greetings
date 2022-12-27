@@ -1,6 +1,24 @@
+using DreamOrbit.Greetings.Component.GreetingsComponent;
+using DreamOrbit.Greetings.Component.Interface;
+using DreamOrbit.Greetings.Data.Context;
+using DreamOrbit.Greetings.Data.GreetingsDbRepository;
+using DreamOrbit.Greetings.Data.Interface;
+using DreamOrbit.Greetings.Data.Models;
+using DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent;
+using DreamOrbit.Greetings.EmailBodyComponent.Interface;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IGreetingsComponent, GreetingsComponent>();
+builder.Services.AddScoped<IGreetingsDbRepository, GreetingsDbRepository>();
+builder.Services.AddScoped<IEmailComponent, EmailComponent>();
+
+// Add Database
+builder.Services.AddDbContext<GreetingsContext>
+    (option => option.UseSqlServer(builder.Configuration.GetConnectionString("CompanyConnStr")));
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

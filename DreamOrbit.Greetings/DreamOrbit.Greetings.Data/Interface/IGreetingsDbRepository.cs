@@ -9,6 +9,11 @@ namespace DreamOrbit.Greetings.Data.Interface
 {
     public interface IGreetingsDbRepository
     {
-        List<Employee> FetchTodayBirthdayEmployee();
+        public List<Employee> FetchTodayBirthdayEmployee();
+        public Employee GetDreamorbitEmployeeById(int id);
+        public Employee AddDreamorbitEmployee(Employee employee);
+        public Employee UpdatedDreamorbitEmployeeDb(int id, Employee employee);
+        public Employee DeleteEmployeeFromDb(int id);
+
     }
 }

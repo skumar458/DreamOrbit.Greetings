@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace DreamOrbit.Greetings.Data.Models
 {
     public class Email
     {
+        [Key]
+        public int Id { get; set; }
         public string? Subject { get; set; }
         public string? To { get; set; }
         public string? CC { get; set; }

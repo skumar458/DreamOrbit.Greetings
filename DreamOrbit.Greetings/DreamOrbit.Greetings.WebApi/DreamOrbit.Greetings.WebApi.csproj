@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DreamOrbit.Greetings.Component\DreamOrbit.Greetings.Component.csproj" />
+    <ProjectReference Include="..\EmailBodyComponent\DreamOrbit.Greetings.EmailComponent.csproj" />
   </ItemGroup>
 
 </Project>
