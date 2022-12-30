@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamOrbit.Greetings.Data.Migrations
 {
     [DbContext(typeof(GreetingsContext))]
-    [Migration("20221227071417_NewMigration")]
-    partial class NewMigration
+    [Migration("20221230115450_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace DreamOrbit.Greetings.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DreamOrbit.Greetings.Data.Models.Email", b =>
+            modelBuilder.Entity("DreamOrbit.Greetings.Data.Models.EmailMessage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,27 +33,24 @@ namespace DreamOrbit.Greetings.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BCC")
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Body")
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WhichType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("From")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("To")
+                    b.Property<string>("Wish")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("emails");
+                    b.ToTable("emailMessage");
                 });
 
             modelBuilder.Entity("DreamOrbit.Greetings.Data.Models.Employee", b =>
@@ -91,6 +88,34 @@ namespace DreamOrbit.Greetings.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("employees");
+                });
+
+            modelBuilder.Entity("DreamOrbit.Greetings.Data.Models.MailSmtpDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FromMailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FromPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsEnableSsl")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Port")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("mailSmtpDetails");
                 });
 #pragma warning restore 612, 618
         }

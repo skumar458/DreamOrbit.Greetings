@@ -18,6 +18,7 @@ namespace DreamOrbit.Greetings.Data.Context
 
         public DbSet<Employee> employees { get; set; }
 
-        public DbSet<Email> emails { get; set; }    
+        public DbSet<MailSmtpDetail> mailSmtpDetails { get; set; }
+        public DbSet<EmailMessage> emailMessage { get; set; }
     }
 }

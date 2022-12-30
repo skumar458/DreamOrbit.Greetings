@@ -1,4 +1,5 @@
 ﻿using DreamOrbit.Greetings.Component.Interface;
+using DreamOrbit.Greetings.Data.Context;
 using DreamOrbit.Greetings.Data.Interface;
 using DreamOrbit.Greetings.Data.Models;
 using DreamOrbit.Greetings.EmailBodyComponent.Interface;
@@ -14,24 +15,37 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
     public class GreetingsComponent : IGreetingsComponent
     {
         private readonly IGreetingsDbRepository _greetingDbRepository;
-        private readonly IEmailComponent emailComponent;
+        private readonly IEmailComponent _emailComponent;
+     
 
-        public GreetingsComponent(IGreetingsDbRepository greetingDbRepository)
+        public GreetingsComponent(IGreetingsDbRepository greetingDbRepository,IEmailComponent emailComponent)
         {
             _greetingDbRepository = greetingDbRepository;
+            _emailComponent = emailComponent;
+          
         }
 
+       
         public bool ProcessBirthdayEmail()
         {
             var employees = _greetingDbRepository.FetchTodayBirthdayEmployee();
+
+            // fetch smtp server detail
+            var smtpDetail = _greetingDbRepository.FetchSmtpDetail();
+
+            // fetch random birthday wish and images
+
+
+
+
             foreach (var employee in employees)
             {
                 // Prepare email body for each loop.
-                emailComponent.PrepareEmail();
+                var email = _emailComponent.PrepareEmail();
 
 
                 // Send email.
-                emailComponent.SendEmail();
+                var result =_emailComponent.SendEmail(smtpDetail);
 
             }
             return true;

@@ -25,6 +25,16 @@ namespace DreamOrbit.Greetings.Data.GreetingsDbRepository
             return todayBirthday;
         }
 
+        public MailSmtpDetail FetchSmtpDetail()
+        {
+            return _greetingContext.mailSmtpDetails.FirstOrDefault();
+        }
+
+        public List<EmailMessage> FetchMailData()
+        {
+            return _greetingContext.emailMessage.ToList();
+        }
+
 
         public Employee GetDreamorbitEmployeeById(int id)
         {
@@ -71,6 +81,7 @@ namespace DreamOrbit.Greetings.Data.GreetingsDbRepository
             }
             return data;
         }
+
 
     }
 }

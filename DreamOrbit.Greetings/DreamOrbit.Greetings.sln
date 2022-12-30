@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamOrbit.Greetings.Data",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DreamOrbit.Greetings.EmailComponent", "EmailBodyComponent\DreamOrbit.Greetings.EmailComponent.csproj", "{05E33B5F-394E-4C0B-83CE-19A4A8DE2D8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamOrbit.Greetings.App", "DreamOrbit.Greetings.App\DreamOrbit.Greetings.App.csproj", "{A39CE503-38D8-4EFC-B0E2-73FC4DFE48F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{05E33B5F-394E-4C0B-83CE-19A4A8DE2D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E33B5F-394E-4C0B-83CE-19A4A8DE2D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E33B5F-394E-4C0B-83CE-19A4A8DE2D8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39CE503-38D8-4EFC-B0E2-73FC4DFE48F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39CE503-38D8-4EFC-B0E2-73FC4DFE48F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39CE503-38D8-4EFC-B0E2-73FC4DFE48F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39CE503-38D8-4EFC-B0E2-73FC4DFE48F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

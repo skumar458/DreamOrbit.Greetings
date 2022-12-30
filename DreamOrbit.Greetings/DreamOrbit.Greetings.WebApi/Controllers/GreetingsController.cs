@@ -22,6 +22,13 @@ namespace DreamOrbit.Greetings.WebApi.Controllers
             return Ok(_greetingcomponent.ProcessBirthdayEmail());
         }
 
+    /*    [HttpPost("{Send}")]
+        public IActionResult PostBirthdayEmail()
+        {
+            return Ok();
+        }
+*/
+
         [HttpGet("{id}")]
         public IActionResult GetDreamorbitEmployeeById(int id) 
         {

@@ -14,6 +14,7 @@ namespace DreamOrbit.Greetings.Data.Interface
         public Employee AddDreamorbitEmployee(Employee employee);
         public Employee UpdatedDreamorbitEmployeeDb(int id, Employee employee);
         public Employee DeleteEmployeeFromDb(int id);
-
+        public MailSmtpDetail FetchSmtpDetail();
+        public List<EmailMessage> FetchMailData();
     }
 }

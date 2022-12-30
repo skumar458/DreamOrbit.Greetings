@@ -6,27 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DreamOrbit.Greetings.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class NewMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "emails",
+                name: "emailMessage",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    To = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CC = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BCC = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    From = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Wish = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WhichType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_emails", x => x.Id);
+                    table.PrimaryKey("PK_emailMessage", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,16 +47,36 @@ namespace DreamOrbit.Greetings.Data.Migrations
                 {
                     table.PrimaryKey("PK_employees", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "mailSmtpDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FromMailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FromPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ServerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Port = table.Column<int>(type: "int", nullable: false),
+                    IsEnableSsl = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_mailSmtpDetails", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "emails");
+                name: "emailMessage");
 
             migrationBuilder.DropTable(
                 name: "employees");
+
+            migrationBuilder.DropTable(
+                name: "mailSmtpDetails");
         }
     }
 }
