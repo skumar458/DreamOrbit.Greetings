@@ -9,10 +9,10 @@ namespace DreamOrbit.Greetings.Component.Interface
 {
     public interface IGreetingsComponent
     {
-        public bool ProcessBirthdayEmail();
-        public Employee GetDreamorbitEmployeeById(int id);
-        public Employee AddDreamorbitEmployee(Employee employee);
-        public Employee UpdatedEmployee(int id, Employee employee);
-        public Employee DeleteEmployee(int id);
+        public Task<bool> ProcessBirthdayEmail();
+        public Task<Employee> GetDreamorbitEmployeeById(int id);
+        public Task<Employee> AddDreamorbitEmployee(Employee employee);
+        public Task<bool> UpdatedEmployee(int id, Employee employee);
+        public Task<Employee> DeleteEmployee(int id);
     }
 }

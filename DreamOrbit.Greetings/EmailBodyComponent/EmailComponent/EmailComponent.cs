@@ -14,11 +14,18 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
     {
        
 
-        public bool PrepareEmail()
+        public async Task<Email> PrepareEmail(Employee employee, List<EmailMessage> emailMessage)
         {
-            return true;
+
+            Email email = new Email();
+            email.Subject = "Happy Birthday " + employee.FullName;
+            email.To = employee.EmailAddress;
+            email.CC = "";
+            email.Photo = "";
+            email.Body = "";
+            return email;
         }
-        public bool SendEmail(MailSmtpDetail mailSmtpDetail)
+        public async Task<bool> SendEmail(MailSmtpDetail mailSmtpDetail, Email request)
         {
 
             string fromMail = mailSmtpDetail.FromMailAddress;
@@ -27,9 +34,9 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
             MailMessage message = new MailMessage(); 
 
             message.From = new MailAddress(fromMail);
-            message.Subject = "Test Subject";
-            message.To.Add(new MailAddress("ashish2017pandey@gmail.com"));
-            message.Body = "<html><body> Ashish tu pagal hai!!!  </body></html>";
+            message.Subject = request.Subject;
+            message.To.Add(new MailAddress(request.To));
+            message.Body = request.Body;
             message.IsBodyHtml = true;
 
             var smtpClient = new SmtpClient(mailSmtpDetail.ServerName)

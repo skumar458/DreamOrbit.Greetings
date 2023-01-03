@@ -10,14 +10,12 @@ namespace DreamOrbit.Greetings.Data.Models
 {
     public class Email
     {
-        [Key]
-        public int Id { get; set; }
         public string? Subject { get; set; }
-        public string? To { get; set; }
+        public string? To { get; set; } 
         public string? CC { get; set; }
         public string? Body { get; set; }
         public string? BCC { get; set; }
-        public string? From { get; set; }
+        public string? Photo { get; set; }
 
     }
 }

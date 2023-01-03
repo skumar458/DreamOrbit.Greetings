@@ -9,12 +9,12 @@ namespace DreamOrbit.Greetings.Data.Interface
 {
     public interface IGreetingsDbRepository
     {
-        public List<Employee> FetchTodayBirthdayEmployee();
-        public Employee GetDreamorbitEmployeeById(int id);
-        public Employee AddDreamorbitEmployee(Employee employee);
-        public Employee UpdatedDreamorbitEmployeeDb(int id, Employee employee);
-        public Employee DeleteEmployeeFromDb(int id);
-        public MailSmtpDetail FetchSmtpDetail();
-        public List<EmailMessage> FetchMailData();
+        public Task<List<Employee>> FetchTodayBirthdayEmployee();
+        public Task<Employee> GetDreamorbitEmployeeById(int id);
+        public Task<Employee> AddDreamorbitEmployee(Employee employee);
+        public Task<bool> UpdatedDreamorbitEmployeeDb(int id, Employee employee);
+        public Task<Employee> DeleteEmployeeFromDb(int id);
+        public Task<MailSmtpDetail> FetchSmtpDetail();
+        public Task<List<EmailMessage>> FetchEmailMessage();
     }
 }

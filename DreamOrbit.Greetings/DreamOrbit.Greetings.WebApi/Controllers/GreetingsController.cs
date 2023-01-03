@@ -17,45 +17,41 @@ namespace DreamOrbit.Greetings.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult ProcessBirthdayEmail()
+        public async Task<IActionResult> ProcessBirthdayEmail()
         {
-            return Ok(_greetingcomponent.ProcessBirthdayEmail());
+            return Ok(await _greetingcomponent.ProcessBirthdayEmail());
         }
 
-    /*    [HttpPost("{Send}")]
-        public IActionResult PostBirthdayEmail()
-        {
-            return Ok();
-        }
-*/
+  
+
 
         [HttpGet("{id}")]
-        public IActionResult GetDreamorbitEmployeeById(int id) 
+        public async Task<IActionResult> GetDreamorbitEmployeeById(int id) 
         {
             if (id == 0)
             {
                 return NotFound();
             }
-            return Ok(_greetingcomponent.GetDreamorbitEmployeeById(id));
+            return Ok(await _greetingcomponent.GetDreamorbitEmployeeById(id));
         }
 
         [HttpPost]
-        public IActionResult AddDreamorbitEmployee(Employee employee)
+        public async Task<IActionResult> AddDreamorbitEmployee(Employee employee)
         {
-            return Ok(_greetingcomponent.AddDreamorbitEmployee(employee));
+            return Ok(await _greetingcomponent.AddDreamorbitEmployee(employee));
 
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatedEmployee(int id,Employee employee)
+        public async Task<IActionResult> UpdatedEmployee(int id,Employee employee)
         {
-            return Ok(_greetingcomponent.UpdatedEmployee(id,employee));
+            return Ok(await _greetingcomponent.UpdatedEmployee(id,employee));
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteEmployee(int id)
+        public async Task<IActionResult> DeleteEmployee(int id)
         {
-            return Ok(_greetingcomponent.DeleteEmployee(id));
+            return Ok(await _greetingcomponent.DeleteEmployee(id));
         }
     }
 }

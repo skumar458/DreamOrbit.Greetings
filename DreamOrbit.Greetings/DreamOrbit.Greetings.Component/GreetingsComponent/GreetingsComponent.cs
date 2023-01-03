@@ -24,37 +24,33 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
             _emailComponent = emailComponent;
           
         }
-
-       
-        public bool ProcessBirthdayEmail()
+        public async Task<bool> ProcessBirthdayEmail()
         {
-            var employees = _greetingDbRepository.FetchTodayBirthdayEmployee();
+            var employees = await _greetingDbRepository.FetchTodayBirthdayEmployee();
 
             // fetch smtp server detail
-            var smtpDetail = _greetingDbRepository.FetchSmtpDetail();
+            var smtpDetail = await _greetingDbRepository.FetchSmtpDetail();
 
             // fetch random birthday wish and images
-
-
-
+            var emailmessage = await _greetingDbRepository.FetchEmailMessage();
 
             foreach (var employee in employees)
             {
                 // Prepare email body for each loop.
-                var email = _emailComponent.PrepareEmail();
+                var email = await _emailComponent.PrepareEmail(employee,emailmessage);
 
 
                 // Send email.
-                var result =_emailComponent.SendEmail(smtpDetail);
+                var result =await _emailComponent.SendEmail(smtpDetail, email);
 
             }
             return true;
         }
 
         
-       public Employee GetDreamorbitEmployeeById(int id)
+       public async Task<Employee> GetDreamorbitEmployeeById(int id)
         {
-            var data = _greetingDbRepository.GetDreamorbitEmployeeById(id);
+            var data = await _greetingDbRepository.GetDreamorbitEmployeeById(id);
             if(data == null)
             {
                 throw new Exception("Invalid ID");
@@ -63,23 +59,23 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
         }
 
         
-        public Employee AddDreamorbitEmployee(Employee employee)
+        public async Task<Employee> AddDreamorbitEmployee(Employee employee)
         {
-            _greetingDbRepository.AddDreamorbitEmployee(employee);
+            await _greetingDbRepository.AddDreamorbitEmployee(employee);
             return employee;
 
         }
 
         
-        public Employee UpdatedEmployee(int id,Employee employee)
+        public async Task<bool> UpdatedEmployee(int id,Employee employee)
         {
-            return _greetingDbRepository.UpdatedDreamorbitEmployeeDb(id,employee);
+            return await _greetingDbRepository.UpdatedDreamorbitEmployeeDb(id, employee);
         }
 
         
-        public Employee DeleteEmployee(int id)
+        public async Task<Employee> DeleteEmployee(int id)
         {
-            return _greetingDbRepository.DeleteEmployeeFromDb(id);
+            return await _greetingDbRepository.DeleteEmployeeFromDb(id);
         }
 
        
