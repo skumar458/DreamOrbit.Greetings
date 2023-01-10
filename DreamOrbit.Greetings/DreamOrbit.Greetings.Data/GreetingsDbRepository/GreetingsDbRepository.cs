@@ -37,52 +37,6 @@ namespace DreamOrbit.Greetings.Data.GreetingsDbRepository
         }
 
 
-        public async Task<Employee> GetDreamorbitEmployeeById(int id)
-        {
-            return await _greetingContext.employees.FirstOrDefaultAsync(x => x.EmployeeId == id);
-        }
-
-
-        public async Task<Employee> AddDreamorbitEmployee(Employee employee)
-        {
-            await _greetingContext.employees.AddAsync(employee);
-            await _greetingContext.SaveChangesAsync();
-            return  employee;
-        }
-
-
-        public async Task<bool> UpdatedDreamorbitEmployeeDb(int id, Employee Updatedemployee)
-        {
-            var data = await _greetingContext.employees.FirstOrDefaultAsync(x =>x.EmployeeId == id);
-            if(data != null)
-            {
-                data.FullName = Updatedemployee.FullName;
-                data.UpdatedDate = Updatedemployee.UpdatedDate; 
-                data.CreatedDate = Updatedemployee.CreatedDate;
-                data.DateOfBirth = Updatedemployee.DateOfBirth;
-                data.EmailAddress = Updatedemployee.EmailAddress;
-                data.DateOfJoining= Updatedemployee.DateOfJoining;
-                data.EmployeeId = Updatedemployee.EmployeeId;
-                data.AnniversaryDate = Updatedemployee.AnniversaryDate;
-
-                await _greetingContext.SaveChangesAsync();
-            }
-
-            return true;
-        }
-
-
-        public async Task<Employee> DeleteEmployeeFromDb(int id)
-        {
-           var data = await _greetingContext.employees.FirstOrDefaultAsync(x =>x.EmployeeId == id);
-            if(data != null)
-            {
-                _greetingContext.employees.Remove(data);
-                await _greetingContext.SaveChangesAsync();
-            }
-            return data;
-        }
-
 
     }
 }

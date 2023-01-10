@@ -19,7 +19,7 @@ namespace DreamOrbit.Greetings.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Wish = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WhichType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WishType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

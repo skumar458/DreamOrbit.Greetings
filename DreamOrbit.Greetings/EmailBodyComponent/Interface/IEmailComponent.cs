@@ -10,8 +10,8 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.Interface
 {
     public interface IEmailComponent
     {
-        public Task<Email> PrepareEmail(Employee employee,List<EmailMessage> emailMessage);
-        public Task<bool> SendEmail(MailSmtpDetail mailSmtpDetail,Email request);
+        public Email PrepareEmail(Employee employee,List<EmailMessage> emailMessage);
+        public bool SendEmail(MailSmtpDetail mailSmtpDetail,Email request);
         
 
 

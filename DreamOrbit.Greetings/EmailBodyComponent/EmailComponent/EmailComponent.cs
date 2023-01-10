@@ -14,7 +14,7 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
     {
        
 
-        public async Task<Email> PrepareEmail(Employee employee, List<EmailMessage> emailMessage)
+        public Email PrepareEmail(Employee employee, List<EmailMessage> emailMessage)
         {
 
             Email email = new Email();
@@ -23,9 +23,10 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
             email.CC = "";
             email.Photo = "";
             email.Body = "";
+            
             return email;
         }
-        public async Task<bool> SendEmail(MailSmtpDetail mailSmtpDetail, Email request)
+        public bool SendEmail(MailSmtpDetail mailSmtpDetail, Email request)
         {
 
             string fromMail = mailSmtpDetail.FromMailAddress;

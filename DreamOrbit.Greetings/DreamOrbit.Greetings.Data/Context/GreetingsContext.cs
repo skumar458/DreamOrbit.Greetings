@@ -20,5 +20,7 @@ namespace DreamOrbit.Greetings.Data.Context
 
         public DbSet<MailSmtpDetail> mailSmtpDetails { get; set; }
         public DbSet<EmailMessage> emailMessage { get; set; }
+        public DbSet<ErrorTraceLog> errorTraceLogs { get; set; }    
+
     }
 }

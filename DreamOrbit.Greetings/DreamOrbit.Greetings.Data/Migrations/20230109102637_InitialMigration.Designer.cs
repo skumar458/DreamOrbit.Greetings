@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamOrbit.Greetings.Data.Migrations
 {
     [DbContext(typeof(GreetingsContext))]
-    [Migration("20221230115450_InitialMigration")]
+    [Migration("20230109102637_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -42,10 +42,10 @@ namespace DreamOrbit.Greetings.Data.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("WhichType")
+                    b.Property<string>("Wish")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Wish")
+                    b.Property<string>("WishType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

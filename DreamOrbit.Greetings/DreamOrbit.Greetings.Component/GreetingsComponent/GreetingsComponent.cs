@@ -3,10 +3,14 @@ using DreamOrbit.Greetings.Data.Context;
 using DreamOrbit.Greetings.Data.Interface;
 using DreamOrbit.Greetings.Data.Models;
 using DreamOrbit.Greetings.EmailBodyComponent.Interface;
+using DreamOrbit.Greetings.ErrorLog.Interface;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,67 +20,54 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
     {
         private readonly IGreetingsDbRepository _greetingDbRepository;
         private readonly IEmailComponent _emailComponent;
+        private readonly IErrorLog _errorLog;
      
 
-        public GreetingsComponent(IGreetingsDbRepository greetingDbRepository,IEmailComponent emailComponent)
+        public GreetingsComponent(IGreetingsDbRepository greetingDbRepository,IEmailComponent emailComponent,IErrorLog errorLog)
         {
             _greetingDbRepository = greetingDbRepository;
             _emailComponent = emailComponent;
+            _errorLog = errorLog;
           
         }
         public async Task<bool> ProcessBirthdayEmail()
         {
-            var employees = await _greetingDbRepository.FetchTodayBirthdayEmployee();
-
-            // fetch smtp server detail
-            var smtpDetail = await _greetingDbRepository.FetchSmtpDetail();
-
-            // fetch random birthday wish and images
-            var emailmessage = await _greetingDbRepository.FetchEmailMessage();
-
-            foreach (var employee in employees)
+            try
             {
-                // Prepare email body for each loop.
-                var email = await _emailComponent.PrepareEmail(employee,emailmessage);
+                var employees = await _greetingDbRepository.FetchTodayBirthdayEmployee();
+
+                int x = 10; int y = 0;
+                int z = x / y;
+
+                // fetch smtp server detail
+                var smtpDetail = await _greetingDbRepository.FetchSmtpDetail();
+
+                // fetch random birthday wish and images
+                var emailmessage = await _greetingDbRepository.FetchEmailMessage();
+
+                foreach (var employee in employees)
+                {
+                    // Prepare email body for each loop.
+                    var email = _emailComponent.PrepareEmail(employee, emailmessage);
 
 
-                // Send email.
-                var result =await _emailComponent.SendEmail(smtpDetail, email);
+                    // Send email.
+                    var result = _emailComponent.SendEmail(smtpDetail, email);
+
+                }
+            }
+            catch(Exception ex)
+            {
+
+                _errorLog.LogException(ex);
 
             }
+
             return true;
         }
 
         
-       public async Task<Employee> GetDreamorbitEmployeeById(int id)
-        {
-            var data = await _greetingDbRepository.GetDreamorbitEmployeeById(id);
-            if(data == null)
-            {
-                throw new Exception("Invalid ID");
-            }
-            return data;
-        }
-
-        
-        public async Task<Employee> AddDreamorbitEmployee(Employee employee)
-        {
-            await _greetingDbRepository.AddDreamorbitEmployee(employee);
-            return employee;
-
-        }
-
-        
-        public async Task<bool> UpdatedEmployee(int id,Employee employee)
-        {
-            return await _greetingDbRepository.UpdatedDreamorbitEmployeeDb(id, employee);
-        }
-
-        
-        public async Task<Employee> DeleteEmployee(int id)
-        {
-            return await _greetingDbRepository.DeleteEmployeeFromDb(id);
-        }
+      
 
        
 

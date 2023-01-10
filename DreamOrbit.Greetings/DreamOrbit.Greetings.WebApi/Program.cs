@@ -6,6 +6,8 @@ using DreamOrbit.Greetings.Data.Interface;
 using DreamOrbit.Greetings.Data.Models;
 using DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent;
 using DreamOrbit.Greetings.EmailBodyComponent.Interface;
+using DreamOrbit.Greetings.ErrorLog;
+using DreamOrbit.Greetings.ErrorLog.Interface;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IGreetingsComponent, GreetingsComponent>();
 builder.Services.AddScoped<IGreetingsDbRepository, GreetingsDbRepository>();
 builder.Services.AddScoped<IEmailComponent, EmailComponent>();
+builder.Services.AddScoped<IErrorLog, ErrorLog>();
 
 // Add Database
 builder.Services.AddDbContext<GreetingsContext>
