@@ -13,8 +13,10 @@ namespace DreamOrbit.Greetings.Data.Models
         public int Id { get; set; }
         public string? Wish { get; set; }
         public string? Photo { get; set; }
-        public string? WishType { get; set; }
+        public int WishType { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
     }
+
+
 }

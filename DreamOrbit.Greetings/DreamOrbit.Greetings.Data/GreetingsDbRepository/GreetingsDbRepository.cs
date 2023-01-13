@@ -34,6 +34,9 @@ namespace DreamOrbit.Greetings.Data.GreetingsDbRepository
         public async Task<List<EmailMessage>> FetchEmailMessage()
         {
             return await _greetingContext.emailMessage.ToListAsync();
+
+            //return await _greetingContext.emailMessage.OrderBy(x => Guid.NewGuid().GetHashCode()).Take(1).ToListAsync();
+
         }
 
 

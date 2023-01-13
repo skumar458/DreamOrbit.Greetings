@@ -36,9 +36,9 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
             {
                 var employees = await _greetingDbRepository.FetchTodayBirthdayEmployee();
 
-                int x = 10; int y = 0;
+              /*  int x = 10; int y = 0;
                 int z = x / y;
-
+*/
                 // fetch smtp server detail
                 var smtpDetail = await _greetingDbRepository.FetchSmtpDetail();
 
@@ -56,7 +56,7 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
                 _errorLog.LogException(ex);

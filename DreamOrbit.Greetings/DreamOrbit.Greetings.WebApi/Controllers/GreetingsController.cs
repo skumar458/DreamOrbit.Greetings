@@ -2,6 +2,8 @@
 using DreamOrbit.Greetings.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace DreamOrbit.Greetings.WebApi.Controllers
 {
@@ -23,7 +25,9 @@ namespace DreamOrbit.Greetings.WebApi.Controllers
             return Ok(await _greetingcomponent.ProcessBirthdayEmail());
         }
 
-  
+
+
+
 
 
     }
