@@ -4,7 +4,7 @@ using DreamOrbit.Greetings.Data.Context;
 using DreamOrbit.Greetings.Data.GreetingsDbRepository;
 using DreamOrbit.Greetings.Data.Interface;
 using DreamOrbit.Greetings.Data.Models;
-using DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent;
+using DreamOrbit.Greetings.EmailComponent.EmailComponent;
 using DreamOrbit.Greetings.EmailBodyComponent.Interface;
 using DreamOrbit.Greetings.ErrorLog;
 using DreamOrbit.Greetings.ErrorLog.Interface;

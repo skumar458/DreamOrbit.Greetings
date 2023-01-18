@@ -25,10 +25,5 @@ namespace DreamOrbit.Greetings.WebApi.Controllers
             return Ok(await _greetingcomponent.ProcessBirthdayEmail());
         }
 
-
-
-
-
-
     }
 }

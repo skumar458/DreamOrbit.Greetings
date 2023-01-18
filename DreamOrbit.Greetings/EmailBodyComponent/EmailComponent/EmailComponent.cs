@@ -3,58 +3,56 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System.Net;                                 //shubham
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using DreamOrbit.Greetings.Data.Models;
 using System.Reflection;
 using Stubble.Core.Builders;
 
-namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
+namespace DreamOrbit.Greetings.EmailComponent.EmailComponent
 {
     public class EmailComponent : IEmailComponent
-    {
-        private readonly string birthdayTemplate = "DreamOrbit.Greetings.EmailComponent.Resources.BirthdayTemplate.BirthdayEmailTemplate";
+    { 
 
+        private readonly string birthdayTemplate = "DreamOrbit.Greetings.EmailComponent.Resources.BirthdayTemplate.BirthdayEmailTemplate.html";
 
         public Email PrepareEmail(Employee employee, List<EmailMessage> emailMessage)
         {
-            var singleEmailMessage = GetRandomMessageAndPhoto(emailMessage);
+             var singleEmailMessage = GetRandomMessageAndPhoto.PickRandom(emailMessage);
+            //var singleEmailMessage = RandomEmailMessage.PickRandomEmailMessage(emailMessage);
 
             Email email = new Email();
             email.Subject = "Happy Birthday " + employee.FullName;
             email.To = employee.EmailAddress;
             email.CC = "";
-            email.Body = PrepareEmailBody(employee.FullName,singleEmailMessage.Wish,singleEmailMessage.Photo);
-            
+            email.Body = PrepareEmailBody(employee.FullName, singleEmailMessage.Wish, singleEmailMessage.Photo);
+
             return email;
         }
 
-        private EmailMessage GetRandomMessageAndPhoto(List<EmailMessage> emailMessage)
+        private string? PrepareEmailBody(string? fullName, string? wish, string? photo)
         {
-            return emailMessage.FirstOrDefault();
-
-        }
-
-        private string PrepareEmailBody(string FullName, string Wish, string Photo)
-        {
-            var templateVariable = new
+            var templateVaraible = new
             {
-                empname = FullName,
-                birthdaywish = Wish,
-                birthdayphoto = Photo
+                empname = fullName,
+                birthdaywish = wish,
+                birthdayphoto = photo,
+                currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location)
             };
 
             var htmlTemplate = ReadTemplateFromResource(birthdayTemplate);
-            return EmailBodyBuilder.GenerateHtmlBody(htmlTemplate, templateVariable);
+
+            return EmailBodyBuilder.GenerateHtmlBody(htmlTemplate, templateVaraible);
+
         }
 
-        private static string ReadTemplateFromResource(string resourceName)
+        public static string ReadTemplateFromResource(string resourceName)
         {
             var assembly = Assembly.GetExecutingAssembly();
             string template;
-            using (Stream? stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader? reader = new StreamReader(stream))
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
             {
                 template = reader.ReadToEnd();
             }
@@ -67,7 +65,7 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
             string fromMail = mailSmtpDetail.FromMailAddress;
             string fromPassword = mailSmtpDetail.FromPassword;
 
-            MailMessage message = new MailMessage(); 
+            MailMessage message = new MailMessage();
 
             message.From = new MailAddress(fromMail);
             message.Subject = request.Subject;
@@ -87,15 +85,15 @@ namespace DreamOrbit.Greetings.EmailBodyComponent.EmailBodyComponent
             return true;
         }
 
-        public static class EmailBodyBuilder
-        {
-            public static string GenerateHtmlBody(string htmlTemplate, object templateVariable)
-            {
-                StubbleBuilder builder = new StubbleBuilder();
-                var boundTemplate = builder.Build().Render(htmlTemplate,templateVariable);
-                return boundTemplate;
-            }
-        }
+    }
 
+    public static class EmailBodyBuilder
+    {
+        public static string GenerateHtmlBody(string htmlTemplate, object view)
+        {
+            StubbleBuilder builder = new StubbleBuilder();
+            var boundTemplate = builder.Build().Render(htmlTemplate, view);
+            return boundTemplate;
+        }
     }
 }

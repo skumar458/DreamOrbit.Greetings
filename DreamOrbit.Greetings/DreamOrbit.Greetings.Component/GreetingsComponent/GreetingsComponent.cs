@@ -48,7 +48,7 @@ namespace DreamOrbit.Greetings.Component.GreetingsComponent
                 foreach (var employee in employees)
                 {
                     // Prepare email body for each loop.
-                    var email = _emailComponent.PrepareEmail(employee, emailmessage);
+                    var email =  _emailComponent.PrepareEmail(employee, emailmessage);
 
 
                     // Send email.
